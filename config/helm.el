@@ -1,5 +1,4 @@
 (with-eval-after-load 'helm
-
   (helm-adaptive-mode)
 
   ;; Set height of all helm windows.

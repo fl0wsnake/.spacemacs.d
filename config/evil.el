@@ -1,5 +1,4 @@
 (with-eval-after-load 'evil
-
   ;; 'w', 'e', 'b' treat some_word as one word, default behavior is still accessible under 'W', 'E', 'B'.
   ;; Yet 'iW' still selects a subword.
   ;; (defalias #'forward-evil-word #'forward-evil-symbol)
@@ -105,13 +104,10 @@
 
   ;; "c", "C" in all modes, and "p" in visual mode don't change registers.
   (advice-add 'evil-change :around (lambda (orig-fun &optional beg end type register yank-handler delete-func)
+                                     "Same change that doesn't override registers."
                                      (funcall orig-fun beg end type ?_ yank-handler delete-func)))
 
-  (advice-add 'change-line-without-yanking :around (lambda (orig-fun &optional beg end type register yank-handler)
-                                     (funcall orig-fun beg end type ?_ yank-handler)))
-
-  ;; (evil-define-operator change-line-without-yanking (beg end type register yank-handler)
-  ;;   :motion evil-end-of-line
-  ;;   (evil-change-line beg end type ?_ yank-handler))
-
-  (define-key evil-normal-state-map (kbd "C") #'change-line-without-yanking))
+  (advice-add 'evil-change-line :around (lambda (orig-fun &optional beg end type register yank-handler)
+                                          "Same change-line that doesn't override registers."
+                                          (funcall orig-fun beg end type ?_ yank-handler)))
+  )

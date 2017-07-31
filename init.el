@@ -91,7 +91,6 @@
    dotspacemacs-auto-save-file-location 'cache
    dotspacemacs-max-rollback-slots 5
    dotspacemacs-helm-resize nil
-   ;; dotspacemacs-helm-no-header nil
    dotspacemacs-helm-no-header t
    dotspacemacs-helm-position 'bottom
    dotspacemacs-helm-use-fuzzy 'always
@@ -119,63 +118,35 @@
    dotspacemacs-whitespace-cleanup nil
    ))
 (defun dotspacemacs/user-init ()
-  (load "~/.spacemacs.d/local/prettier-js.el")
-  ;; No ugliness at the bottom of this file.
-  (setq custom-file "~/.spacemacs.d/.emacs_custom.el")
-  (load custom-file 'noerror)
   (setq-default
    dotspacemacs-remap-Y-to-y$ t
    evil-shift-round nil)
+
+  ;; Local packages.
+  (load "~/.spacemacs.d/local/prettier-js.el")
+
+  ;; No ugliness at the bottom of this file.
+  (setq custom-file "~/.spacemacs.d/.emacs_custom.el")
+  (load custom-file 'noerror)
   )
 (defun dotspacemacs/user-config ()
   ;; Files and directories which will be ignored in projectile and will be hidden in neotree.
   (setq ignored-files '("package-lock\.json")
         ignored-directories '("node_modules"))
 
+  (load "~/.spacemacs.d/config/buffers.el")
   (load "~/.spacemacs.d/config/evil.el")
+  (load "~/.spacemacs.d/config/extra-global-bindings.el")
   (load "~/.spacemacs.d/config/eye-browse.el")
   (load "~/.spacemacs.d/config/helm.el")
   (load "~/.spacemacs.d/config/neotree.el")
-  (load "~/.spacemacs.d/config/nlinum.el")
   (load "~/.spacemacs.d/config/proced.el")
-  (load "~/.spacemacs.d/config/shell.el")
   (load "~/.spacemacs.d/config/projectile.el")
+  (load "~/.spacemacs.d/config/scroll.el")
+  (load "~/.spacemacs.d/config/shell.el")
   (load "~/.spacemacs.d/config/syntax.el")
 
-  (define-key evil-normal-state-map (kbd "C-1") #'evil-numbers/inc-at-pt)
-  (define-key evil-normal-state-map (kbd "C-2") #'evil-numbers/dec-at-pt)
-  (define-key evil-normal-state-map (kbd "C-3") #'zoom-frm-in)
-  (define-key evil-normal-state-map (kbd "C-4") #'zoom-frm-out)
-  (define-key evil-normal-state-map (kbd "SPC s l") #'helm-semantic-or-imenu)
-  (define-key global-map (kbd "C-a") #'mark-whole-buffer)
-  (define-key evil-normal-state-local-map (kbd "SPC b M") #'spacemacs/kill-other-buffers)
-  (defun open-messages-buffer nil (interactive) (display-buffer (messages-buffer)))
-  (define-key evil-normal-state-local-map (kbd "SPC b m") #'open-messages-buffer)
-  (move-text-default-bindings)
-
-  (add-to-list
-   'display-buffer-alist
-   '(
-     "^\\*.*\\*$" display-buffer-same-window))
-
-  ;; (require 'cl-lib)
-  ;; (advice-add 'save-buffers-kill-emacs :around (lambda (orig-fun &optional arg)
-  ;;                                                "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  ;;                                                (cl-letf (((symbol-function #'process-list) (lambda ()))) (funcall orig-fun arg))))
-
-  ;; Killing buffer's doesn't ask to kill precesses.
-  (setq kill-buffer-query-functions (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
-
-  (add-hook 'focus-out-hook (lambda nil (save-some-buffers t)))
-
-  ;; (advice-add 'find-file-at-point :around (lambda (orig-fun &optional filename)
-  ;;                                           (let ((absolute-path (locate-file filename "/")))
-  ;;                                             (if (absolute-path)
-  ;;                                                 (helm-open-file-with-default-tool absolute-path)
-  ;;                                               (funcall orig-fun filename)))))
-
   (setq
-   scroll-margin 1
    powerline-default-separator 'bar
    inhibit-compacting-font-caches t
    create-lockfiles nil)

@@ -1,5 +1,4 @@
 (with-eval-after-load 'neotree
-
   (setq
    neo-mode-line-type 'none
    neo-modern-sidebar nil

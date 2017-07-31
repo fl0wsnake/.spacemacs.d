@@ -18,3 +18,8 @@
 ;; highlight-parentheses
 (setq
  hl-paren-colors '("#c4d8ff"))
+
+;; auto-highlight-symbol.
+(custom-set-faces '(ahs-face ((t (:background "#3c424e")))))
+(custom-set-faces '(ahs-plugin-whole-buffer-face ((t (:background "#3c424e")))))
+(spacemacs/toggle-automatic-symbol-highlight-on)
