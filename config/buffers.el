@@ -15,6 +15,9 @@
 ;; Save buffers on focus out.
 (add-hook 'focus-out-hook (lambda nil (save-some-buffers t)))
 
+;; Collect garbage on focus out.
+(add-hook 'focus-out-hook #'garbage-collect)
+
 ;; 'gf' doesn't prompt.
 (advice-add 'find-file-at-point :around (lambda (orig-fun &rest filename)
                                           (let ((path (or filename (ffap-guesser))))

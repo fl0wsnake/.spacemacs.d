@@ -147,6 +147,8 @@
   (load "~/.spacemacs.d/config/syntax.el")
 
   (setq
+   garbage-collection-messages t
+   gc-cons-threshold 112000000
    powerline-default-separator 'bar
    inhibit-compacting-font-caches t
    create-lockfiles nil)
