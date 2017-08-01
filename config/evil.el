@@ -102,12 +102,13 @@
     (evil-delete-line beg end type ?_ yank-handler))
   (define-key evil-normal-state-map (kbd "SPC D") #'delete-line-without-yanking)
 
-  ;; "c", "C" in all modes, and "p" in visual mode don't change registers.
+  ;; 'c' doesn't override registers.
   (advice-add 'evil-change :around (lambda (orig-fun &optional beg end type register yank-handler delete-func)
-                                     "Same change that doesn't override registers."
+                                     "Change doesn't override registers."
                                      (funcall orig-fun beg end type ?_ yank-handler delete-func)))
 
+  ;; 'C' doesn't override registers.
   (advice-add 'evil-change-line :around (lambda (orig-fun &optional beg end type register yank-handler)
-                                          "Same change-line that doesn't override registers."
+                                          "Change-line doesn't override registers."
                                           (funcall orig-fun beg end type ?_ yank-handler)))
   )

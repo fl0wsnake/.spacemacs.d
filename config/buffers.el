@@ -20,6 +20,7 @@
 
 ;; 'gf' doesn't prompt.
 (advice-add 'find-file-at-point :around (lambda (orig-fun &rest filename)
+                                          "No prompt if file exists (or if it doesn't actually)."
                                           (let ((path (or filename (ffap-guesser))))
                                             (if (file-readable-p path)
                                                 (find-file-existing path)

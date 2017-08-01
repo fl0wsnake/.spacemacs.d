@@ -7,14 +7,10 @@
    neo-theme 'icons
    neo-banner-message nil)
 
-  ;; 'l' inside neotree doesn't switch to the buffer.
-  (evil-define-key
-    'evilified neotree-mode-map
-    (kbd "l")
-    (lambda  nil
-      (interactive)
-      (neotree-enter)
-      (winum-select-window-0)))
+  ;; Switch back to neotree.
+  (advice-add 'neotree-enter :after (lambda (&rest rest)
+                                      "Switch back to neotree."
+                                      (winum-select-window-0)))
 
   ;; '1-9' inside neotree open file in corresponding window (if it exists).
   (mapcar
@@ -30,12 +26,14 @@
              (if (and
                   (not (winum-get-window-by-number num))
                   (winum-get-window-by-number (- num 1)))
-                 (neotree-enter-vertical-split)
+                 (progn
+                   (neotree-enter-vertical-split)
+                   (winum-select-window-0))
                (progn
                  (funcall fun)
                  (winum-select-window-0)
                  (neotree-enter)))
-             (winum-select-window-0))))))
+             )))))
    (number-sequence 1 9))
 
   ;; Hide neotree on switch.
