@@ -11,6 +11,6 @@
 
 (define-key evil-normal-state-local-map (kbd "SPC w v") #'split-window-right-and-focus)
 (define-key evil-normal-state-local-map (kbd "SPC w V") #'split-window-right)
-(define-key evil-normal-state-map (kbd "RET") (kbd "a RET <escape>"))
+(define-key evil-normal-state-map (kbd "RET") (kbd "i RET <escape>"))
 (define-key evil-normal-state-map (kbd "M-<right>") #'next-buffer)
 (define-key evil-normal-state-map (kbd "M-<left>") #'previous-buffer)

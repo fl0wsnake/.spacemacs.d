@@ -1,11 +1,8 @@
 ;; Not create split window for some buffers.
 (add-to-list
  'display-buffer-alist
- ;; '("^\\*.*\\*$" display-buffer-same-window)
- '(".*" display-buffer-same-window)
+ '("^\\*.*\\*$" display-buffer-same-window)
  )
-;; https://github.com/magit/magit/issues/2541
-;; - magit in same window.
 
 ;; No prompt to kill processes on exit.
 (advice-add 'save-buffers-kill-emacs :around
@@ -33,7 +30,15 @@
                   (funcall orig-fun path)))))
 
 ;; Magit open file in other window.
-;; (advice-add 'magit-diff-visit-file :around
-;;             (lambda (orig-fun &optional file other-window force-worktree)
-;;               "Open file in other window."
-;;               (funcall orig-fun file t force-worktree)))
+(setq magit-display-buffer-function
+      (lambda (buffer)
+        (display-buffer
+         buffer (if (and (derived-mode-p 'magit-mode)
+                         (memq (with-current-buffer buffer major-mode)
+                               '(magit-process-mode
+                                 magit-revision-mode
+                                 magit-diff-mode
+                                 magit-stash-mode
+                                 magit-status-mode)))
+                    nil
+                  '(display-buffer-same-window)))))
