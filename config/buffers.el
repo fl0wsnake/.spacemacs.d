@@ -1,8 +1,7 @@
 ;; Not create split window for some buffers.
 (add-to-list
  'display-buffer-alist
- '(
-   "^\\*.*\\*$" display-buffer-same-window))
+ '("^\\*.*\\*$" display-buffer-same-window))
 
 ;; No prompt to kill processes on exit.
 (advice-add 'save-buffers-kill-emacs :around (lambda (orig-fun &optional arg)
