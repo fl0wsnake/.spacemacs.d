@@ -25,3 +25,6 @@
 (spacemacs/toggle-automatic-symbol-highlight-on)
 (add-hook 'evil-visual-state-entry-hook #'spacemacs/toggle-automatic-symbol-highlight-off)
 (add-hook 'evil-visual-state-exit-hook #'spacemacs/toggle-automatic-symbol-highlight-on)
+
+;; Face for show-smartparens-mode.
+(custom-set-faces '(sp-show-pair-match-face ((t (:background "#505868")))))

@@ -1,4 +1,5 @@
 (with-eval-after-load 'evil
+  (fset 'evil-visual-update-x-selection 'ignore)
   ;; (defalias #'forward-evil-word #'forward-evil-symbol)
 
   ;; "w", "e", "b", 'iw', 'aw' - work with symbols;
