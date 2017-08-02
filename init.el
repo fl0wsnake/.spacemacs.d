@@ -46,6 +46,7 @@
      version-control)
    dotspacemacs-additional-packages
    '(
+     google-this
      nlinum-relative
      all-the-icons)
    dotspacemacs-frozen-packages '()
