@@ -23,8 +23,7 @@
       auto-completion-enable-snippets-in-popup t
       auto-completion-return-key-behavior nil
       auto-completion-enable-help-tooltip 'manual
-      auto-completion-tab-key-behavior 'complete
-      :disabled-for org erc)
+      auto-completion-tab-key-behavior 'complete)
      docker
      vimscript
      html
@@ -69,10 +68,10 @@
    dotspacemacs-themes '(atom-one-dark spacemacs-dark majapahit-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font
-   '(("Consolas" :size 14 :weight normal :width normal :powerline-scale 1.0)
-     ("Source Code Pro" :size 14 :weight normal :width normal :powerline-scale 1.0)
-     ("Courier New" :size 14 :weight normal :width normal :powerline-scale 1.0)
-     ("monospace" :size 14 :weight normal :width normal :powerline-scale 1.0))
+   '(("Consolas" :size 15 :weight normal :width normal :powerline-scale 1.0)
+     ("Source Code Pro" :size 15 :weight normal :width normal :powerline-scale 1.0)
+     ("Courier New" :size 15 :weight normal :width normal :powerline-scale 1.0)
+     ("monospace" :size 15 :weight normal :width normal :powerline-scale 1.0))
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-ex-command-key ":"
@@ -140,6 +139,7 @@
   (load "~/.spacemacs.d/config/eye-browse.el")
   (load "~/.spacemacs.d/config/helm.el")
   (load "~/.spacemacs.d/config/neotree.el")
+  (load "~/.spacemacs.d/config/org.el")
   (load "~/.spacemacs.d/config/proced.el")
   (load "~/.spacemacs.d/config/projectile.el")
   (load "~/.spacemacs.d/config/scroll.el")

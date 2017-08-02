@@ -1,7 +1,10 @@
 (with-eval-after-load 'evil
-  ;; 'w', 'e', 'b' treat some_word as one word, default behavior is still accessible under 'W', 'E', 'B'.
-  ;; Yet 'iW' still selects a subword.
   ;; (defalias #'forward-evil-word #'forward-evil-symbol)
+
+  ;; "w", "e", "b", 'iw', 'aw' - work with symbols;
+  ;; "W", "E", "B" - with non-space sequences (default vim behavior);
+  ;; "gw", "ge", "gb", "io", "ao" - with sub-words
+  ;; (correspond to default behavior of vim"s "w", "e", "b", "iw", "aw");
   (evil-define-motion forward-symbol-begin (count &optional bigword)
     :type exclusive
     (let ((thing 'evil-symbol)
@@ -43,18 +46,20 @@
     :type exclusive
     (let ((thing 'evil-symbol))
       (evil-signal-at-bob-or-eob (- (or count 1)))
-      (evil-backward-beginning thing count)))
+      (evil-backward-beginnin thing count)))
 
-  (define-key evil-motion-state-map "w" #'forward-symbol-begin)
-  ;; (define-key evil-motion-state-map "W" #'evil-forward-word-begin)
-  (define-key evil-motion-state-map "e" #'forward-symbol-end)
-  ;; (define-key evil-motion-state-map "E" #'evil-forward-word-end)
-  (define-key evil-motion-state-map "b" #'backward-symbol-begin)
-  ;; (define-key evil-motion-state-map "B" #'evil-backward-word-begin)
-  (define-key evil-inner-text-objects-map "w" #'evil-inner-symbol)
-  (define-key evil-inner-text-objects-map "W" #'evil-inner-word)
-  (define-key evil-outer-text-objects-map "w" #'evil-a-symbol)
-  ;; (define-key evil-outer-text-objects-map "W" #'evil-a-word)
+  (define-key evil-motion-state-map (kbd "w") #'forward-symbol-begin)
+  (define-key evil-motion-state-map (kbd "e") #'forward-symbol-end)
+  (define-key evil-motion-state-map (kbd "b") #'backward-symbol-begin)
+  (define-key evil-inner-text-objects-map (kbd "w") #'evil-inner-symbol)
+  (define-key evil-outer-text-objects-map (kbd "w") #'evil-a-symbol)
+  (define-key evil-normal-state-map "gw" nil)
+  (define-key evil-motion-state-map "gw" 'evil-forward-word-begin)
+  (define-key evil-motion-state-map "ge" 'evil-forward-word-end)
+  (define-key evil-motion-state-map "gb" 'evil-backward-word-begin)
+  (define-key evil-inner-text-objects-map "o" #'evil-inner-word)
+  (define-key evil-outer-text-objects-map "o" #'evil-a-word)
+  (define-key evil-normal-state-map "gW" #'evil-fill)
 
   ;; Select last pasted text.
   (define-key evil-normal-state-map (kbd "C-s")
@@ -103,9 +108,26 @@
   (define-key evil-normal-state-map (kbd "SPC D") #'delete-line-without-yanking)
 
   ;; 'c' doesn't override registers.
-  (advice-add 'evil-change :around (lambda (orig-fun &optional beg end type register yank-handler delete-func)
-                                     "Change doesn't override registers."
-                                     (funcall orig-fun beg end type ?_ yank-handler delete-func)))
+  (evil-define-operator evil-change (beg end type register yank-handler delete-func)
+    (evil-change-original beg end type ?_ yank-handler delete-func))
+  (evil-define-operator evil-change-original
+    (beg end type register yank-handler delete-func)
+    (interactive "<R><x><y>")
+    (let ((delete-func (or delete-func 'evil-delete))
+          (nlines (1+ (- (line-number-at-pos end)
+                         (line-number-at-pos beg))))
+          (bop (= beg (buffer-end -1)))
+          (eob (= end (buffer-end 1))))
+      (funcall delete-func beg end type register yank-handler)
+      (cond
+       ((eq type 'line)
+        (if (and eob (not bop))
+            (evil-open-below 1)
+          (evil-open-above 1)))
+       ((eq type 'block)
+        (evil-insert 1 nlines))
+       (t
+        (evil-insert 1)))))
 
   ;; 'C' doesn't override registers.
   (advice-add 'evil-change-line :around (lambda (orig-fun &optional beg end type register yank-handler)
