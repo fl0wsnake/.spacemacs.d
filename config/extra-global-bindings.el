@@ -14,3 +14,5 @@
 (define-key evil-normal-state-map (kbd "RET") (kbd "i RET <escape>"))
 (define-key evil-normal-state-map (kbd "M-<right>") #'next-buffer)
 (define-key evil-normal-state-map (kbd "M-<left>") #'previous-buffer)
+(define-key evil-normal-state-local-map (kbd "SPC f a") #'jump-to-register)
+

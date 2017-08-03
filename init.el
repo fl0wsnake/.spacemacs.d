@@ -52,6 +52,7 @@
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
    '(
+     yasnippet
      vi-tilde-fringe)
    dotspacemacs-install-packages 'used-only))
 (defun dotspacemacs/init ()
