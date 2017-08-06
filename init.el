@@ -9,13 +9,7 @@
    dotspacemacs-configuration-layers
    '(
      ;; pandoc
-     (org
-      :variables
-      org-link-frame-setup (quote ((vm . vm-visit-folder-other-frame)
-                                   (vm-imap . vm-visit-imap-folder-other-frame)
-                                   (gnus . org-gnus-no-new-news)
-                                   (file . find-file)
-                                   (wl . wl-other-frame))))
+     org
      shell
      spotify
      (auto-completion
@@ -46,6 +40,9 @@
      version-control)
    dotspacemacs-additional-packages
    '(
+     ;; helm-org-rifle
+     google-translate
+     helm-dash
      google-this
      nlinum-relative
      all-the-icons)
@@ -131,9 +128,12 @@
   (load custom-file 'noerror)
   )
 (defun dotspacemacs/user-config ()
-  ;; Files and directories which will be ignored in projectile and will be hidden in neotree.
-  (setq ignored-files '("package-lock\.json")
-        ignored-directories '("node_modules"))
+  (setq
+   org-directory (or (getenv "ORGDIR") "~/Dropbox/org")
+
+   ;; Files and directories which will be ignored in projectile and will be hidden in neotree.
+   ignored-files '("package-lock\.json")
+   ignored-directories '("node_modules"))
 
   (load "~/.spacemacs.d/config/buffers.el")
   (load "~/.spacemacs.d/config/evil.el")
@@ -148,10 +148,25 @@
   (load "~/.spacemacs.d/config/shell.el")
   (load "~/.spacemacs.d/config/syntax.el")
 
+  ;; Variables of emacs and packages which take less than 3 lines.
   (setq
+   ;; google-translate
+   google-translate-default-target-language "ru"
+   ;; helm-dash
+   helm-dash-browser-func 'eww
+   ;; emacs/spacemacs
+   desktop-globals-to-save (list 'register-alist)
    garbage-collection-messages t
    gc-cons-threshold 112000000
    powerline-default-separator 'bar
    inhibit-compacting-font-caches t
    create-lockfiles nil)
+
+  ;; Persistent registers.
+  (add-hook 'spacemacs-post-user-config-hook
+            (lambda ()
+              (desktop-save-mode)
+              (desktop-read)))
+
+  ;; Mouse go away!
   (mouse-avoidance-mode 'banish))

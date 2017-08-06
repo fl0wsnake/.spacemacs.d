@@ -47,7 +47,7 @@
     :type exclusive
     (let ((thing 'evil-symbol))
       (evil-signal-at-bob-or-eob (- (or count 1)))
-      (evil-backward-beginnin thing count)))
+      (evil-backward-beginning thing count)))
 
   (define-key evil-motion-state-map (kbd "w") #'forward-symbol-begin)
   (define-key evil-motion-state-map (kbd "e") #'forward-symbol-end)

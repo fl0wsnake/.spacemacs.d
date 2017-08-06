@@ -14,5 +14,9 @@
 (define-key evil-normal-state-map (kbd "RET") (kbd "i RET <escape>"))
 (define-key evil-normal-state-map (kbd "M-<right>") #'next-buffer)
 (define-key evil-normal-state-map (kbd "M-<left>") #'previous-buffer)
-(define-key evil-normal-state-local-map (kbd "SPC f a") #'jump-to-register)
+(define-key evil-normal-state-local-map (kbd "SPC r j") #'jump-to-register)
+(define-key evil-normal-state-local-map (kbd "SPC a g") #'google-this)
+(define-key global-map (kbd "ESC ESC") nil)
+(define-key evil-normal-state-local-map (kbd "SPC a o h") #'helm-org-agenda-files-headings)
+(define-key evil-normal-state-local-map (kbd "SPC o") #'helm-org-agenda-files-headings)
 

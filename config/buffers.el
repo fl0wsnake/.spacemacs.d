@@ -1,9 +1,9 @@
+;; Register mappings for jump-to-register function.
+(set-register ?o (cons 'file org-directory))
+
 ;; Not create split window for some buffers.
 (add-to-list
  'display-buffer-alist
- ;; '("^\\*.*\\*$" display-buffer-same-window)
- ;; '("^(?:(?!\\*NeoTree\\*).)+$" display-buffer-same-window)
- ;; '((lambda (buffer-name display-fun) (not (string= buffer-name " *NeoTree*"))) display-buffer-same-window)
  '((lambda (buffer-name display-fun) (not (cl-search "*NeoTree*" buffer-name))) display-buffer-same-window)
  )
 

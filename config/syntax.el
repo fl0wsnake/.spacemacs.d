@@ -22,9 +22,9 @@
 ;; auto-highlight-symbol.
 (custom-set-faces '(ahs-face ((t (:background "#383e49")))))
 (custom-set-faces '(ahs-plugin-whole-buffer-face ((t (:background "#383e49")))))
-(spacemacs/toggle-automatic-symbol-highlight-on)
-(add-hook 'evil-visual-state-entry-hook #'spacemacs/toggle-automatic-symbol-highlight-off)
-(add-hook 'evil-visual-state-exit-hook #'spacemacs/toggle-automatic-symbol-highlight-on)
+;; (spacemacs/toggle-automatic-symbol-highlight-on)
+;; (add-hook 'evil-visual-state-entry-hook #'spacemacs/toggle-automatic-symbol-highlight-off)
+;; (add-hook 'evil-visual-state-exit-hook #'spacemacs/toggle-automatic-symbol-highlight-on)
 
 ;; Face for show-smartparens-mode.
 (custom-set-faces '(sp-show-pair-match-face ((t (:background "#505868")))))
