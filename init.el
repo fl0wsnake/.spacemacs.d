@@ -40,7 +40,7 @@
      version-control)
    dotspacemacs-additional-packages
    '(
-     ;; helm-org-rifle
+     rainbow-mode
      google-translate
      helm-dash
      google-this
@@ -49,6 +49,7 @@
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
    '(
+     org-projectile
      yasnippet
      vi-tilde-fringe)
    dotspacemacs-install-packages 'used-only))
@@ -120,10 +121,10 @@
    dotspacemacs-remap-Y-to-y$ t
    evil-shift-round nil)
 
-  ;; Local packages.
+  ;; Local packages
   (load "~/.spacemacs.d/local/prettier-js.el")
 
-  ;; No ugliness at the bottom of this file.
+  ;; No ugliness at the bottom of this file
   (setq custom-file "~/.spacemacs.d/.emacs_custom.el")
   (load custom-file 'noerror)
   )
@@ -131,7 +132,7 @@
   (setq
    org-directory (or (getenv "ORGDIR") "~/Dropbox/org")
 
-   ;; Files and directories which will be ignored in projectile and will be hidden in neotree.
+   ;; Files and directories which will be ignored in projectile and will be hidden in neotree
    ignored-files '("package-lock\.json")
    ignored-directories '("node_modules"))
 
@@ -147,22 +148,25 @@
   (load "~/.spacemacs.d/config/scroll.el")
   (load "~/.spacemacs.d/config/shell.el")
   (load "~/.spacemacs.d/config/syntax.el")
+  (load "~/.spacemacs.d/config/encoding.el")
 
-  ;; Variables of emacs and packages which take less than 3 lines.
+  ;; Variables of emacs and packages which take less than 3 lines
   (setq
    ;; google-translate
    google-translate-default-target-language "ru"
    ;; helm-dash
    helm-dash-browser-func 'eww
    ;; emacs/spacemacs
+   desktop-files-not-to-save ".*"
    desktop-globals-to-save (list 'register-alist)
+   desktop-locals-to-save nil
    garbage-collection-messages t
    gc-cons-threshold 112000000
    powerline-default-separator 'bar
    inhibit-compacting-font-caches t
    create-lockfiles nil)
 
-  ;; Persistent registers.
+  ;; Persistent registers
   (add-hook 'spacemacs-post-user-config-hook
             (lambda ()
               (desktop-save-mode)

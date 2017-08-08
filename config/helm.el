@@ -1,7 +1,7 @@
 (with-eval-after-load 'helm
   (helm-adaptive-mode 1)
 
-  ;; Set height of all helm windows.
+  ;; Set height of all helm windows
   (setq
    helm-buffers-fuzzy-matching t
    helm-recentf-fuzzy-match t

@@ -62,7 +62,7 @@
   (define-key evil-outer-text-objects-map "o" #'evil-a-word)
   (define-key evil-normal-state-map "gW" #'evil-fill)
 
-  ;; Select last pasted text.
+  ;; Select last pasted text
   (define-key evil-normal-state-map (kbd "C-s")
     (lambda nil
       (interactive)
@@ -70,11 +70,11 @@
                       (evil-visual-char)
                       (evil-goto-mark ?])))
 
-  ;; C-v in insert mode pastes from 1 register.
+  ;; C-v in insert mode pastes from 1 register
   (defun insert-mode-paste nil (interactive) (evil-paste-from-register ?1))
   (define-key evil-insert-state-map (kbd "C-v") #'insert-mode-paste)
 
-  ;; "p" and "P" don't change registers in visual mode.
+  ;; "p" and "P" don't change registers in visual mode
   (evil-define-command evil-visual-paste (count &optional register)
     (interactive "P<x>")
     (let* ((text (if register
@@ -97,18 +97,18 @@
             (evil-paste-after count register)
           (evil-paste-before count register)))))
 
-  ;; 'SPC d' == '"_d'.
+  ;; 'SPC d' == '"_d'
   (evil-define-operator delete-without-yanking (beg end type register yank-handler)
     (evil-delete beg end type ?_ yank-handler))
   (define-key evil-normal-state-map (kbd "SPC d") #'delete-without-yanking)
 
-  ;; 'SPC D' == '"_D'.
+  ;; 'SPC D' == '"_D'
   (evil-define-operator delete-line-without-yanking (beg end type register yank-handler)
     :motion evil-end-of-line
     (evil-delete-line beg end type ?_ yank-handler))
   (define-key evil-normal-state-map (kbd "SPC D") #'delete-line-without-yanking)
 
-  ;; 'c' doesn't override registers.
+  ;; 'c' doesn't override registers
   (evil-define-operator evil-change (beg end type register yank-handler delete-func)
     (evil-change-original beg end type ?_ yank-handler delete-func))
   (evil-define-operator evil-change-original
@@ -130,7 +130,7 @@
        (t
         (evil-insert 1)))))
 
-  ;; 'C' doesn't override registers.
+  ;; 'C' doesn't override registers
   (advice-add 'evil-change-line :around (lambda (orig-fun &optional beg end type register yank-handler)
                                           "Change-line doesn't override registers."
                                           (funcall orig-fun beg end type ?_ yank-handler)))

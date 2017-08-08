@@ -7,12 +7,12 @@
    neo-theme 'icons
    neo-banner-message nil)
 
-  ;; Switch back to neotree.
+  ;; Switch back to neotree
   (advice-add 'neotree-enter :after (lambda (&rest rest)
                                       "Switch back to neotree."
                                       (winum-select-window-0)))
 
-  ;; '1-9' inside neotree open file in corresponding window (if it exists).
+  ;; '1-9' inside neotree open file in corresponding window (if it exists)
   (mapcar
    (lambda (num)
      (let ((fun (intern (format "winum-select-window-%d" num)))
@@ -36,7 +36,7 @@
              )))))
    (number-sequence 1 9))
 
-  ;; Hide neotree on switch.
+  ;; Hide neotree on switch
   (cl-flet
       ((hide-neotree-after
         (f)
