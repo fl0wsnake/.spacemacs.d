@@ -118,6 +118,7 @@
    ))
 (defun dotspacemacs/user-init ()
   (setq-default
+   spacemacs-default-company-backends (remove 'company-dabbrev spacemacs-default-company-backends)
    dotspacemacs-remap-Y-to-y$ t
    evil-shift-round nil)
 

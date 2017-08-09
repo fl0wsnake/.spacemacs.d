@@ -17,7 +17,7 @@
 (setq kill-buffer-query-functions
       (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
 
-;; Save buffers on focus out
+;; Save all buffers on focus out
 (add-hook 'focus-out-hook (lambda nil (save-some-buffers t)))
 
 ;; Collect garbage on focus out
