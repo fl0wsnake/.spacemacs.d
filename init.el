@@ -157,6 +157,7 @@
    ;; helm-dash
    helm-dash-browser-func 'eww
    ;; emacs/spacemacs
+   desktop-load-locked-desktop t
    desktop-files-not-to-save ".*"
    desktop-globals-to-save (list 'register-alist)
    desktop-locals-to-save nil

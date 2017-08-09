@@ -31,3 +31,6 @@
 
 ;; Highlight colors
 (define-key evil-normal-state-map (kbd "SPC t R") #'rainbow-mode)
+
+;; Auto remove trailing whitespaces
+(add-hook 'before-save-hook 'delete-trailing-whitespace)

@@ -85,3 +85,6 @@
 (advice-add 'org-insert-subheading :after
             (lambda (&rest ARG)
               (org-shiftmetadown)))
+
+;; Indent after 'o'.
+(advice-add 'evil-org-eol-call :after (lambda (&rest r) (org-indent-line)))
