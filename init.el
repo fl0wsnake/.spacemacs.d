@@ -8,7 +8,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
-     ;; pandoc
+     pandoc
      org
      shell
      spotify
@@ -45,6 +45,7 @@
      helm-dash
      google-this
      nlinum-relative
+     ;; org-rifle
      all-the-icons)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
@@ -118,6 +119,7 @@
    ))
 (defun dotspacemacs/user-init ()
   (setq-default
+   ;; No word based autocompletion
    spacemacs-default-company-backends (remove 'company-dabbrev spacemacs-default-company-backends)
    dotspacemacs-remap-Y-to-y$ t
    evil-shift-round nil)
@@ -158,6 +160,7 @@
    ;; helm-dash
    helm-dash-browser-func 'eww
    ;; emacs/spacemacs
+   desktop-restore-frames nil
    desktop-load-locked-desktop t
    desktop-files-not-to-save ".*"
    desktop-globals-to-save (list 'register-alist)

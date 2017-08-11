@@ -9,10 +9,10 @@
 (org-clock-persistence-insinuate)
 
 (setq
- ;; helm-org-rifle-show-path t
+ org-cycle-emulate-tab nil
+ helm-org-rifle-show-path t
  org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢")
  org-M-RET-may-split-line nil
- org-archive-reversed-order t
  org-log-done 'time
  helm-org-show-filename t
  org-agend-window-setup 'current-window
@@ -65,11 +65,6 @@
 (defun org-switch-to-buffer-other-window (buffer-or-name &optional norecord force-same-window)
   (switch-to-buffer buffer-or-name norecord force-same-window))
 
-;; Indents after RET
-(advice-add 'org-return :around
-            (lambda (orig-fun &rest r)
-              (funcall orig-fun t)))
-
 ;; M-RET always inserts heading before
 (advice-add 'org-insert-heading :around
             (lambda (orig-fun &optional ARG INVISIBLE-OK TOP)
@@ -86,5 +81,9 @@
             (lambda (&rest ARG)
               (org-shiftmetadown)))
 
-;; Indent after 'o'.
-(advice-add 'evil-org-eol-call :after (lambda (&rest r) (org-indent-line)))
+;; Long lines get spread across multiple screen lines
+;; Text get indented accordingly without actualyy inserting spaces
+(add-hook 'org-mode-hook #'(lambda ()
+                             (visual-line-mode)
+                             (org-indent-mode)
+                             ))
