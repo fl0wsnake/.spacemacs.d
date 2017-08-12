@@ -116,20 +116,20 @@
    dotspacemacs-persistent-server nil
    dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
    dotspacemacs-default-package-repository nil
-   dotspacemacs-whitespace-cleanup nil
-   ))
+   dotspacemacs-whitespace-cleanup nil))
 (defun dotspacemacs/user-init ()
   (setq-default
    ;; No word based autocompletion
    spacemacs-default-company-backends (remove 'company-dabbrev spacemacs-default-company-backends)
+   ;; Some more defaults
    dotspacemacs-remap-Y-to-y$ t
    evil-shift-round nil)
 
   ;; No ugliness at the bottom of this file
   (setq custom-file "~/.spacemacs.d/.emacs_custom.el")
-  (load custom-file 'noerror)
-  )
+  (load custom-file 'noerror))
 (defun dotspacemacs/user-config ()
+
   (setq
    org-directory (or (getenv "ORGDIR") "~/Dropbox/org")
    ;; Files and directories which will be ignored in projectile and will be hidden in neotree

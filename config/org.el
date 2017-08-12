@@ -69,24 +69,18 @@
 ;; M-RET always inserts heading before
 (advice-add 'org-insert-heading :around
             (lambda (orig-fun &optional ARG INVISIBLE-OK TOP)
-              (org-beginning-of-line)
+              (org-end-of-line)
               (funcall orig-fun ARG INVISIBLE-OK TOP)))
 
 ;; Show children before inserting a new one
-;; C-M-RET always inserts headings as children of current one
-(advice-add 'org-insert-subheading :around
-            (lambda (orig-fun &rest r)
-              (org-show-children)
-              (funcall orig-fun r)
-              (org-shiftmetadown)))
-(advice-add 'org-insert-todo-subheading :around
-            (lambda (orig-fun &rest r)
-              (org-show-children)
-              (funcall orig-fun r)
-              (org-shiftmetadown)))
+(advice-add 'org-insert-subheading :before
+            (lambda (&rest r)
+              (org-show-children)))
+(advice-add 'org-insert-todo-subheading :before
+            (lambda (&rest r)
+              (org-show-children)))
 
 ;; Long lines get spread across multiple screen lines
 ;; Text get indented accordingly without actualyy inserting spaces
 (add-hook 'org-mode-hook #'(lambda ()
-                             (visual-line-mode)
-                             (org-indent-mode)))
+                             (visual-line-mode)))
