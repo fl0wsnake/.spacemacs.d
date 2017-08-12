@@ -1,5 +1,5 @@
-(define-key evil-normal-state-map (kbd "C-1") #'evil-numbers/inc-at-pt)
-(define-key evil-normal-state-map (kbd "C-2") #'evil-numbers/dec-at-pt)
+(define-key evil-normal-state-map (kbd "C-=") #'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map (kbd "C--") #'evil-numbers/dec-at-pt)
 (define-key evil-normal-state-map (kbd "C-3") #'zoom-frm-in)
 (define-key evil-normal-state-map (kbd "C-4") #'zoom-frm-out)
 (define-key evil-normal-state-map (kbd "SPC s l") #'helm-semantic-or-imenu)

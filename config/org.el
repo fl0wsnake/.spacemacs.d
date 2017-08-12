@@ -1,4 +1,5 @@
 (with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-M-S-<return>") #'org-insert-todo-subheading)
   (define-key org-mode-map (kbd "C-a") #'org-archive-subtree)
   (define-key org-mode-map (kbd "C-M-<return>") #'org-insert-subheading))
 
@@ -72,18 +73,20 @@
               (funcall orig-fun ARG INVISIBLE-OK TOP)))
 
 ;; Show children before inserting a new one
-(advice-add 'org-insert-subheading :before
-            (lambda (&rest ARG)
-              (org-show-children)))
-
 ;; C-M-RET always inserts headings as children of current one
-(advice-add 'org-insert-subheading :after
-            (lambda (&rest ARG)
+(advice-add 'org-insert-subheading :around
+            (lambda (orig-fun &rest r)
+              (org-show-children)
+              (funcall orig-fun r)
+              (org-shiftmetadown)))
+(advice-add 'org-insert-todo-subheading :around
+            (lambda (orig-fun &rest r)
+              (org-show-children)
+              (funcall orig-fun r)
               (org-shiftmetadown)))
 
 ;; Long lines get spread across multiple screen lines
 ;; Text get indented accordingly without actualyy inserting spaces
 (add-hook 'org-mode-hook #'(lambda ()
                              (visual-line-mode)
-                             (org-indent-mode)
-                             ))
+                             (org-indent-mode)))
