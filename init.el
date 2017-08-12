@@ -37,7 +37,8 @@
      git
      markdown
      syntax-checking
-     version-control)
+     version-control
+     my-local)
    dotspacemacs-additional-packages
    '(
      rainbow-mode
@@ -124,9 +125,6 @@
    dotspacemacs-remap-Y-to-y$ t
    evil-shift-round nil)
 
-  ;; Local packages
-  (load "~/.spacemacs.d/local/prettier-js.el")
-
   ;; No ugliness at the bottom of this file
   (setq custom-file "~/.spacemacs.d/.emacs_custom.el")
   (load custom-file 'noerror)
@@ -134,7 +132,6 @@
 (defun dotspacemacs/user-config ()
   (setq
    org-directory (or (getenv "ORGDIR") "~/Dropbox/org")
-
    ;; Files and directories which will be ignored in projectile and will be hidden in neotree
    ignored-files '("package-lock\.json")
    ignored-directories '("node_modules"))
