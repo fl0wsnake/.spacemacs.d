@@ -65,6 +65,7 @@
 ;; always open buffers in same window
 (defun org-switch-to-buffer-other-window (buffer-or-name &optional norecord force-same-window)
   (switch-to-buffer buffer-or-name norecord force-same-window))
+(defalias 'switch-to-buffer-other-window #'org-switch-to-buffer-other-window)
 
 ;; M-RET always inserts heading before
 (advice-add 'org-insert-heading :around
