@@ -18,4 +18,4 @@
 (define-key evil-normal-state-local-map (kbd "SPC a g") #'google-this)
 (define-key global-map (kbd "ESC ESC") nil)
 (define-key evil-normal-state-local-map (kbd "SPC a o h") #'helm-org-agenda-files-headings)
-(define-key evil-normal-state-local-map (kbd "SPC o") #'helm-org-agenda-files-headings)
+(define-key evil-normal-state-local-map (kbd "SPC o a") #'helm-org-agenda-files-headings)

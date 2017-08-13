@@ -1,7 +1,16 @@
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-M-S-<return>") #'org-insert-todo-subheading)
-  (define-key org-mode-map (kbd "C-a") #'org-archive-subtree)
-  (define-key org-mode-map (kbd "C-M-<return>") #'org-insert-subheading))
+(require 'org)
+(require 'helm-org)
+(defun helm-org-in-buffer-headings ()
+  (interactive)
+  (helm :sources (helm-source-org-headings-for-files (list (buffer-file-name)))
+        :candidate-number-limit 99999
+        :truncate-lines helm-org-truncate-lines
+        :buffer "*helm org inbuffer*"))
+
+(define-key evil-normal-state-local-map (kbd "SPC o b") #'helm-org-in-buffer-headings)
+(define-key org-mode-map (kbd "C-M-S-<return>") #'org-insert-todo-subheading)
+(define-key org-mode-map (kbd "C-a") #'org-archive-subtree)
+(define-key org-mode-map (kbd "C-M-<return>") #'org-insert-subheading)
 
 ;; Remove warning
 (defalias #'org-projectile:per-repo #'org-projectile-per-project)
@@ -12,7 +21,6 @@
 (setq
  org-adapt-indentation nil
  org-cycle-emulate-tab nil
- helm-org-rifle-show-path t
  org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢")
  org-M-RET-may-split-line nil
  org-log-done 'time
@@ -59,9 +67,12 @@
 (set-face-foreground 'org-level-8 "#b93ae4")
 
 ;; Show first level children of node after going to it
-(advice-add 'helm-org-agenda-files-headings :after
-            (lambda (&rest r)
-              (org-show-children)))
+(let ((show-children
+       (lambda (&rest r)
+         "org-show-children"
+         (org-show-children))))
+  (advice-add 'helm-org-agenda-files-headings :after show-children)
+  (advice-add 'helm-org-in-buffer-headings :after show-children))
 
 ;; Always open buffers in same window
 (defun org-switch-to-buffer-other-window (buffer-or-name &optional norecord force-same-window)

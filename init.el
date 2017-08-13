@@ -46,7 +46,6 @@
      helm-dash
      google-this
      nlinum-relative
-     ;; org-rifle
      all-the-icons)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages

@@ -34,3 +34,8 @@
 
 ;; Auto remove trailing whitespaces
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; idk what it is
+(setq
+ helm-mode-fuzzy-match t
+ helm-completion-in-region-fuzzy-match t)
