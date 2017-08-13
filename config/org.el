@@ -10,6 +10,7 @@
 (org-clock-persistence-insinuate)
 
 (setq
+ org-adapt-indentation nil
  org-cycle-emulate-tab nil
  helm-org-rifle-show-path t
  org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢")
@@ -23,7 +24,7 @@
                    )
  org-todo-keywords
  (quote (
-         (sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "HOLD(h@/!)" "|" "DONE(d!)" "CANCELLED(c!)")))
+         (sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "HOLD(h@/!)" "|" "DONE(d)" "CANCELLED(c)")))
  ;; org-todo-state-tags-triggers
  ;; (quote (("CANCELLED" ("CANCELLED" . t))
  ;;         ("WAITING" ("WAITING" . t))
@@ -62,7 +63,7 @@
             (lambda (&rest r)
               (org-show-children)))
 
-;; always open buffers in same window
+;; Always open buffers in same window
 (defun org-switch-to-buffer-other-window (buffer-or-name &optional norecord force-same-window)
   (switch-to-buffer buffer-or-name norecord force-same-window))
 (defalias 'switch-to-buffer-other-window #'org-switch-to-buffer-other-window)
@@ -81,7 +82,6 @@
             (lambda (&rest r)
               (org-show-children)))
 
-;; Long lines get spread across multiple screen lines
-;; Text get indented accordingly without actualyy inserting spaces
+;; Word-wrap
 (add-hook 'org-mode-hook #'(lambda ()
                              (visual-line-mode)))

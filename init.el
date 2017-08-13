@@ -175,4 +175,8 @@
               (desktop-read)))
 
   ;; Mouse go away!
-  (mouse-avoidance-mode 'banish))
+  (mouse-avoidance-mode 'banish)
+
+  ;; Preload agenda
+  (org-agenda-list)
+  (evil-delete-buffer "*Org Agenda*"))
