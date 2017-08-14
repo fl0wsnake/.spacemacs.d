@@ -17,7 +17,8 @@
       auto-completion-enable-snippets-in-popup t
       auto-completion-return-key-behavior nil
       auto-completion-enable-help-tooltip 'manual
-      auto-completion-tab-key-behavior 'complete)
+      auto-completion-tab-key-behavior 'complete
+      :disabled-for org markdown)
      docker
      vimscript
      html
@@ -80,7 +81,7 @@
    dotspacemacs-major-mode-leader-key ","
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    dotspacemacs-distinguish-gui-tab nil
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$ t
    dotspacemacs-retain-visual-state-on-shift t
    dotspacemacs-visual-line-move-text t
    dotspacemacs-ex-substitute-global nil
@@ -117,17 +118,13 @@
    dotspacemacs-default-package-repository nil
    dotspacemacs-whitespace-cleanup nil))
 (defun dotspacemacs/user-init ()
-  (setq-default
-   ;; No word based autocompletion
-   spacemacs-default-company-backends (remove 'company-dabbrev spacemacs-default-company-backends)
-   ;; Some more defaults
-   dotspacemacs-remap-Y-to-y$ t
-   evil-shift-round nil)
-
   ;; No ugliness at the bottom of this file
-  (setq custom-file "~/.spacemacs.d/.emacs_custom.el")
+  (setq custom-file (expand-file-name ".emacs_custom.el" dotspacemacs-directory))
   (load custom-file 'noerror))
 (defun dotspacemacs/user-config ()
+  (setq-default
+   ;; No word based autocompletion
+   spacemacs-default-company-backends (remove 'company-dabbrev spacemacs-default-company-backends))
 
   (setq
    org-directory (or (getenv "ORGDIR") "~/Dropbox/org")

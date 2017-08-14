@@ -1,3 +1,5 @@
+(setq evil-shift-round nil)
+
 (with-eval-after-load 'evil
   (fset 'evil-visual-update-x-selection 'ignore)
   ;; (defalias #'forward-evil-word #'forward-evil-symbol)

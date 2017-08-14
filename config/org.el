@@ -19,6 +19,7 @@
 (org-clock-persistence-insinuate)
 
 (setq
+ org-startup-folded t
  org-adapt-indentation nil
  org-cycle-emulate-tab nil
  org-bullets-bullet-list '("♠" "♣" "♥" "♦" "♤" "♧" "♡" "♢")
@@ -42,12 +43,14 @@
  ;;         ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
  ;;         ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
  org-todo-keyword-faces
- (quote (("TODO" :foreground "#cdc673" :weight bold)
-         ("NEXT" :foreground "#ffc008" :weight bold)
-         ("DONE" :foreground "#ff8247" :weight bold)
-         ("CANCELLED" :foreground "#cd6839" :weight bold)
-         ("WAITING" :foreground "#ff6a6a" :weight bold)
-         ("HOLD" :foreground "#ff82ab" :weight bold)))
+ (quote (
+         ;; ("TODO" :foreground "#cdc673" :weight bold)
+         ;; ("NEXT" :foreground "#ffc008" :weight bold)
+         ;; ("DONE" :foreground "#ff8247" :weight bold)
+         ;; ("CANCELLED" :foreground "#cd6839" :weight bold)
+         ;; ("WAITING" :foreground "#ff6a6a" :weight bold)
+         ;; ("HOLD" :foreground "#ff82ab" :weight bold)
+         ))
  org-capture-templates
  '(
    ("a" "Project tasks" entry (file+headline "todos.org" "project")

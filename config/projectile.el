@@ -7,5 +7,4 @@
    projectile-globally-ignored-files (append
                                       projectile-globally-ignored-files
                                       ignored-files))
-  ;; (projectile-maybe-invalidate-cache t)
   )
