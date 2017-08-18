@@ -7,9 +7,8 @@
         :truncate-lines helm-org-truncate-lines
         :buffer "*helm org inbuffer*"))
 
-(define-key evil-normal-state-local-map (kbd "SPC o b") #'helm-org-in-buffer-headings)
+(define-key evil-normal-state-local-map (kbd "SPC s o") #'helm-org-in-buffer-headings)
 (define-key org-mode-map (kbd "C-M-S-<return>") #'org-insert-todo-subheading)
-(define-key org-mode-map (kbd "C-a") #'org-archive-subtree)
 (define-key org-mode-map (kbd "C-M-<return>") #'org-insert-subheading)
 
 ;; Remove warning
@@ -69,11 +68,13 @@
 (set-face-foreground 'org-level-7 "#e03997")
 (set-face-foreground 'org-level-8 "#b93ae4")
 
-;; Show first level children of node after going to it
+;; Show first level children of node and hide all other nodes after jumping
 (let ((show-children
        (lambda (&rest r)
          "org-show-children"
-         (org-show-children))))
+         (org-overview)
+         (org-show-children)
+         )))
   (advice-add 'helm-org-agenda-files-headings :after show-children)
   (advice-add 'helm-org-in-buffer-headings :after show-children))
 

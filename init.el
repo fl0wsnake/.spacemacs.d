@@ -130,7 +130,10 @@
    org-directory (or (getenv "ORGDIR") "~/Dropbox/org")
    ;; Files and directories which will be ignored in projectile and will be hidden in neotree
    ignored-files '("package-lock\.json")
-   ignored-directories '("node_modules"))
+   ignored-directories '(
+                         "dist"
+                         "node_modules"
+                         "elm-stuff"))
 
   (load "~/.spacemacs.d/config/buffers.el")
   (load "~/.spacemacs.d/config/evil.el")
