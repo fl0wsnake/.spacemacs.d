@@ -68,11 +68,10 @@
 (set-face-foreground 'org-level-7 "#e03997")
 (set-face-foreground 'org-level-8 "#b93ae4")
 
-;; Show first level children of node and hide all other nodes after jumping
+;; Show first level children of node after jumping
 (let ((show-children
        (lambda (&rest r)
          "org-show-children"
-         (org-overview)
          (org-show-children)
          )))
   (advice-add 'helm-org-agenda-files-headings :after show-children)
