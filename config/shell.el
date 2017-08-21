@@ -1,3 +1,5 @@
+(setq comint-scroll-to-bottom-on-input t)
+
 (defun multishell ()
   (interactive)
   (cl-loop for i from 2 do

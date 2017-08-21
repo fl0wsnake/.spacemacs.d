@@ -11,7 +11,7 @@
      pandoc
      org
      shell
-     spotify
+     ;; spotify
      (auto-completion
       :variables
       auto-completion-enable-snippets-in-popup t
