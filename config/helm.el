@@ -3,6 +3,7 @@
 
   ;; Set height of all helm windows
   (setq
+   helm-grep-file-path-style 'relative
    helm-buffers-fuzzy-matching t
    helm-recentf-fuzzy-match t
    ;; helm-move-to-line-cycle-in-source t
