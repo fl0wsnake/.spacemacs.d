@@ -11,7 +11,6 @@
      pandoc
      org
      shell
-     ;; spotify
      (auto-completion
       :variables
       auto-completion-enable-snippets-in-popup t
@@ -44,7 +43,7 @@
    '(
      rainbow-mode
      google-translate
-     helm-dash
+     ;; helm-dash
      google-this
      nlinum-relative
      all-the-icons)

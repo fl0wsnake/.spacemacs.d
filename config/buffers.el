@@ -45,3 +45,16 @@
                                  magit-status-mode)))
                     nil
                   '(display-buffer-same-window)))))
+
+(defun my-switch-to-buffer-this-window (buffer-or-name &optional norecord force-same-window)
+  (switch-to-buffer buffer-or-name norecord t))
+(defalias 'switch-to-buffer-other-window 'my-switch-to-buffer-this-window)
+
+(defun tide-documentation-at-point ()
+  "Show documentation of the symbol at point."
+  (interactive)
+  (tide-command:quickinfo
+   (tide-on-response-success-callback response nil
+     (-if-let (buffer (tide-construct-documentation (plist-get response :body)))
+         (switch-to-buffer buffer)
+       (message "No documentation available.")))))
