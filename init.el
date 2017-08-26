@@ -155,6 +155,7 @@
    ;; helm-dash
    helm-dash-browser-func 'eww
    ;; emacs/spacemacs
+   desktop-save t
    desktop-restore-frames nil
    desktop-load-locked-desktop t
    desktop-files-not-to-save ".*"
