@@ -2,6 +2,7 @@
 (add-hook 'typescript-mode-hook #'prettier-js-mode)
 (add-hook 'js-mode-hook 'prettier-js-mode)
 (setq prettier-js-args '(
+                         "--no-bracket-spacing"
                          "--trailing-comma=all"
                          "--no-semi"
                          "--tab-width=4"))
