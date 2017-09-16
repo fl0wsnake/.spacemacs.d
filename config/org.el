@@ -32,7 +32,7 @@
                    )
  org-todo-keywords
  (quote (
-         (sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "HOLD(h@/!)" "|" "DONE(d)" "CANCELLED(c)")))
+         (sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)")))
  ;; org-todo-state-tags-triggers
  ;; (quote (("CANCELLED" ("CANCELLED" . t))
  ;;         ("WAITING" ("WAITING" . t))

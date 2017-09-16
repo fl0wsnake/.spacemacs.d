@@ -8,6 +8,7 @@
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
    '(
+     vimscript
      pandoc
      org
      shell
@@ -19,7 +20,6 @@
       auto-completion-tab-key-behavior 'complete
       :disabled-for org markdown)
      docker
-     vimscript
      html
      elm
      nginx
@@ -50,6 +50,7 @@
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages
    '(
+     org-bullets
      org-projectile
      yasnippet
      vi-tilde-fringe)

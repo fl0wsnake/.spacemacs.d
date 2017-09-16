@@ -1,7 +1,8 @@
 ;; prettier-js
-(add-hook 'typescript-mode-hook #'prettier-js-mode)
-(add-hook 'js-mode-hook 'prettier-js-mode)
+;; (add-hook 'typescript-mode-hook #'prettier-js-mode)
+;; (add-hook 'js-mode-hook 'prettier-js-mode)
 (setq prettier-js-args '(
+                         ;; "--single-quote"
                          "--no-bracket-spacing"
                          "--trailing-comma=all"
                          "--no-semi"
