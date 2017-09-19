@@ -43,7 +43,6 @@
    '(
      rainbow-mode
      google-translate
-     ;; helm-dash
      google-this
      nlinum-relative
      all-the-icons)
@@ -67,7 +66,10 @@
    dotspacemacs-startup-lists nil
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(atom-one-dark spacemacs-dark majapahit-dark)
+   dotspacemacs-themes '(
+                         atom-one-dark
+                         spacemacs-dark
+                         majapahit-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font
    '(("Consolas" :size 15 :weight normal :width normal :powerline-scale 1.0)
