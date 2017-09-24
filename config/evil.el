@@ -99,16 +99,18 @@
             (evil-paste-after count register)
           (evil-paste-before count register)))))
 
+  (define-key evil-normal-state-map (kbd "SPC d") #'evil-delete)
+  (define-key evil-normal-state-map (kbd "SPC D") #'evil-delete-line)
   ;; 'SPC d' == '"_d'
   (evil-define-operator delete-without-yanking (beg end type register yank-handler)
     (evil-delete beg end type ?_ yank-handler))
-  (define-key evil-normal-state-map (kbd "SPC d") #'delete-without-yanking)
+  (define-key evil-normal-state-map (kbd "d") #'delete-without-yanking)
 
   ;; 'SPC D' == '"_D'
   (evil-define-operator delete-line-without-yanking (beg end type register yank-handler)
     :motion evil-end-of-line
     (evil-delete-line beg end type ?_ yank-handler))
-  (define-key evil-normal-state-map (kbd "SPC D") #'delete-line-without-yanking)
+  (define-key evil-normal-state-map (kbd "D") #'delete-line-without-yanking)
 
   ;; 'c' doesn't override registers
   (evil-define-operator evil-change (beg end type register yank-handler delete-func)
