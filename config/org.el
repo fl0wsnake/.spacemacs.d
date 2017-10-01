@@ -43,12 +43,12 @@
  ;;         ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
  org-todo-keyword-faces
  (quote (
-         ;; ("TODO" :foreground "#cdc673" :weight bold)
-         ;; ("NEXT" :foreground "#ffc008" :weight bold)
-         ;; ("DONE" :foreground "#ff8247" :weight bold)
-         ;; ("CANCELLED" :foreground "#cd6839" :weight bold)
-         ;; ("WAITING" :foreground "#ff6a6a" :weight bold)
-         ;; ("HOLD" :foreground "#ff82ab" :weight bold)
+         ("TODO" :foreground "#cdc673" :weight bold)
+         ("NEXT" :foreground "#ffc008" :weight bold)
+         ("DONE" :foreground "#ff8247" :weight bold)
+         ("CANCELLED" :foreground "#cd6839" :weight bold)
+         ("WAITING" :foreground "#ff6a6a" :weight bold)
+         ("HOLD" :foreground "#ff82ab" :weight bold)
          ))
  org-capture-templates
  '(
@@ -57,6 +57,8 @@
    ("t" "Todos" entry (file+headline "todos.org" "overall")
     "* TODO %?\n" :prepend t)
    ("j" "Journal" entry (file+datetree "journal.org")
+    "* %U\n  %?")
+   ("u" "Universal downloads" entry (file+datetree "universal_downloads.org")
     "* %U\n  %?")))
 
 (set-face-foreground 'org-level-1 "#9f54ff")
